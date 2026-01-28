@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | Sibro's Animal Shelter</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <header class="main-header">
+    <h1>🐾 Sibro’s Animal Shelter 💖</h1>
+    <!-- No nav links here (as you wanted) -->
+  </header>
+
+  <main class="page-wrap">
+    <section class="page-card" style="text-align:center; position:relative; overflow:hidden;">
+      
+      <!-- Cute floating paws (no CSS file change needed) -->
+      <div style="position:absolute; inset:-40px; opacity:.10; font-size:34px; pointer-events:none;">
+        <div style="position:absolute; top:30px; left:40px; transform:rotate(-12deg);">🐾</div>
+        <div style="position:absolute; top:60px; right:60px; transform:rotate(18deg);">🐾</div>
+        <div style="position:absolute; bottom:40px; left:120px; transform:rotate(8deg);">🐾</div>
+        <div style="position:absolute; bottom:60px; right:120px; transform:rotate(-10deg);">🐾</div>
+      </div>
+
+      <h2 class="page-title" style="margin-bottom:8px;">Welcome to Sibro’s Shelter 🐶🐱</h2>
+      <p style="margin:0 auto 18px; max-width:560px;">
+        A safe place for paws in need. Please login to continue.
+      </p>
+
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+        <a class="btn btn-primary" href="/login" style="min-width:160px;">
+          User Login
+        </a>
+        <a class="btn btn-soft" href="/admin/login" style="min-width:160px;">
+          Admin Login
+        </a>
+      </div>
+
+      <div style="margin-top:18px; font-size:13px; opacity:.75;">
+        Tip: Users can adopt, donate, and volunteer after login ✅
+      </div>
+    </section>
+  </main>
+</body>
+</html>

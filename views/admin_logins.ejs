@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="main-header">
+  <h1>🐾 Admin Panel</h1>
+</header>
+
+<main class="page-wrap">
+  <section class="page-card">
+    <h2 class="page-title">Login History 🔐</h2>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Email / Username</th>
+          <th>Role</th>
+          <th>Login Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% logs.forEach(log => { %>
+          <tr>
+            <td><%= log.email %></td>
+            <td><%= log.role %></td>
+            <td><%= log.login_time %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <div style="text-align:center;margin-top:20px;">
+      <a href="/admin/dashboard" class="btn btn-soft">Back</a>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

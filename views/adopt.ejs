@@ -1,0 +1,15 @@
+app.post("/adopt", (req, res) => {
+  const { user_name, email, phone, animal_id } = req.body;
+
+  const sql =
+    "INSERT INTO adoptions (user_name, email, phone, animal_id) VALUES (?, ?, ?, ?)";
+
+  db.query(sql, [user_name, email, phone, animal_id], (err) => {
+    if (err) {
+      console.error("❌ Adoption Error:", err);
+      return res.status(500).send("Database error. Please try again.");
+    }
+
+    res.send("🐶 Adoption request submitted successfully! Thank you 💖");
+  });
+});

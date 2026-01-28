@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | Sibro's Animal Shelter</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <header class="main-header">
+    <h1>🐾 Sibro’s Animal Shelter 💖</h1>
+  </header>
+
+  <main class="page-wrap">
+    <section class="page-card" style="max-width:520px; margin:0 auto;">
+      <h2 class="page-title" style="text-align:center;">User Login</h2>
+
+      <% if (error) { %>
+        <p style="color:red; text-align:center; margin-top:0;"><%= error %></p>
+      <% } %>
+
+      <form method="POST" action="/login" class="form-grid">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button class="btn btn-primary" type="submit">Login</button>
+      </form>
+
+      <div style="text-align:center; margin-top:14px;">
+        <a href="/" class="btn btn-soft">Back</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+<div class="page-wrap">
+  <div class="page-card">
+    <h1 class="page-title">Adoption Requests 🐶</h1>
+
+    <% if (!adoptions || adoptions.length === 0) { %>
+      <p>No adoption requests found.</p>
+    <% } else { %>
+
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Name</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Email</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Phone</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Animal ID</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Status</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% adoptions.forEach(a => { %>
+            <tr>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= a.user_name %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= a.email %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= a.phone %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= a.animal_id %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;">
+                <strong><%= a.status || "Pending" %></strong>
+              </td>
+
+              <td style="padding:10px;border-bottom:1px solid #eee;display:flex;gap:6px;flex-wrap:wrap;">
+                
+                <!-- APPROVE -->
+                <form method="POST" action="/admin/adoptions/<%= a.id %>/status">
+                  <input type="hidden" name="status" value="Approved" />
+                  <button type="submit"
+                    style="padding:6px 10px;border:none;border-radius:10px;background:#2ecc71;color:#fff;font-weight:700;cursor:pointer;">
+                    Approve
+                  </button>
+                </form>
+
+                <!-- REJECT -->
+                <form method="POST" action="/admin/adoptions/<%= a.id %>/status">
+                  <input type="hidden" name="status" value="Rejected" />
+                  <button type="submit"
+                    style="padding:6px 10px;border:none;border-radius:10px;background:#ff7675;color:#fff;font-weight:700;cursor:pointer;">
+                    Reject
+                  </button>
+                </form>
+
+                <!-- DELETE -->
+                <form method="POST" action="/admin/adoptions/<%= a.id %>/delete"
+                      onsubmit="return confirm('Delete this adoption request?')">
+                  <button type="submit"
+                    style="padding:6px 10px;border:none;border-radius:10px;background:#111;color:#fff;font-weight:700;cursor:pointer;">
+                    Delete
+                  </button>
+                </form>
+
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+    <% } %>
+
+    <div style="margin-top:18px;">
+      <a href="/admin/dashboard" style="text-decoration:none;font-weight:800;">
+        ← Back to Dashboard
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

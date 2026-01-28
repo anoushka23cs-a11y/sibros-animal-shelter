@@ -1,0 +1,28 @@
+<%- include('partials/header', { title, active }) %>
+
+<section class="page-card">
+  <h2 class="page-title">Meet Our Lovely Dogs 🐾</h2>
+  <p class="page-subtitle">Fill the form to send an adoption request 💗</p>
+
+  <div class="dogs-container">
+    <% animals.forEach((animal) => { %>
+      <div class="dog-card">
+        <img src="/images/<%= animal.image %>" class="dog-image" />
+
+        <h2><%= animal.name %></h2>
+        <p>🐾 <b>Breed:</b> <%= animal.breed %></p>
+        <p>💗 <b>Health:</b> <%= animal.health %></p>
+
+        <form action="/adopt" method="POST">
+          <input type="hidden" name="animal_id" value="<%= animal.id %>">
+          <input type="text" name="user_name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="phone" placeholder="Your Phone" required>
+          <button type="submit">Adopt Me 💗</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

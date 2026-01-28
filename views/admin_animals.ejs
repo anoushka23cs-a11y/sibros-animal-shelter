@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="page-wrap">
+  <div class="page-card">
+    <h1 class="page-title">Manage Animals 🐶</h1>
+
+    <h3 style="margin-top:10px;">Add New Animal</h3>
+    <form method="POST" action="/admin-animals/add" style="display:grid;gap:10px;max-width:520px;">
+      <input name="name" placeholder="Name" required />
+      <input name="breed" placeholder="Breed" required />
+      <input name="health" placeholder="Health" required />
+      <input name="image" placeholder="Image filename (e.g. simba.jpg) or URL" required />
+      <button type="submit" style="padding:10px;border:none;border-radius:12px;background:#ff6f9f;color:#fff;font-weight:800;cursor:pointer;">
+        Add Animal
+      </button>
+    </form>
+
+    <hr style="margin:22px 0;">
+
+    <h3>All Animals</h3>
+
+    <% if (!animals || animals.length === 0) { %>
+      <p>No animals found.</p>
+    <% } else { %>
+
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">ID</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Name</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Breed</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Health</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Image</th>
+            <th style="padding:10px;border-bottom:1px solid #ddd;text-align:left;">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% animals.forEach(animal => { %>
+            <tr>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= animal.id %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= animal.name %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= animal.breed %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= animal.health %></td>
+              <td style="padding:10px;border-bottom:1px solid #eee;"><%= animal.image %></td>
+
+              <td style="padding:10px;border-bottom:1px solid #eee;display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="/admin-animals/<%= animal.id %>/edit"
+                   style="padding:8px 12px;border-radius:10px;background:#6c5ce7;color:#fff;text-decoration:none;font-weight:800;">
+                  Edit
+                </a>
+
+                <form method="POST" action="/admin-animals/<%= animal.id %>/delete"
+                      onsubmit="return confirm('Delete this animal?')">
+                  <button type="submit"
+                    style="padding:8px 12px;border:none;border-radius:10px;background:#111;color:#fff;font-weight:800;cursor:pointer;">
+                    Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+    <% } %>
+
+    <div style="margin-top:16px;">
+      <a href="/admin/dashboard" style="text-decoration:none;font-weight:800;">
+        ← Back to Dashboard
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
